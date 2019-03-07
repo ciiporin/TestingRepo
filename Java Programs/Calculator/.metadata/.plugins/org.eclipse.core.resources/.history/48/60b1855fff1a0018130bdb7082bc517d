@@ -1,0 +1,328 @@
+import java.awt.event.ActionListener; 
+import java.awt.event.ActionEvent; 
+import javax.swing.JButton;
+
+
+public class CalculatorEngine implements ActionListener  {
+
+Calculator parent; //references the window
+char selectedAction = ' '; // +, -, /, or *
+double currentResult  =0;//after the numbers are operated, this variable displays the result
+boolean togglePoint = true;//this dictates when a number is pressed, if the calculator needs to clean the text field or not, based on if a result is being displayed in the text field or not
+
+//	Constructor  stores the reference to the Calculator window in the member variable called parent 
+CalculatorEngine(Calculator parent){ 
+
+this.parent = parent;
+}
+
+public void actionPerformed(ActionEvent  e){
+// Get the source of this action
+
+Object temp = e.getSource();
+
+if (temp == parent.buttonPoint ){
+		parent.buttonPoint.setEnabled(false);}//if there is a point typed, disable the point button
+
+JButton clickedButton = (JButton) e.getSource(); 
+String clickedButtonLabel= clickedButton.getText(); 
+
+String dispFieldText=parent.displayField.getText();
+double displayValue=0;//sets the variable used later on
+
+if (!"".equals(dispFieldText)){//Get the number from the text field if it’s not empty
+	try {
+		displayValue=Double.parseDouble(dispFieldText);
+	} catch (NumberFormatException e1) {
+		// TODO Auto-generated catch block
+		javax.swing.JOptionPane.showConfirmDialog(null, "Please enter a Number", "Wrong input", javax.swing.JOptionPane.PLAIN_MESSAGE); return;
+	}
+
+}
+
+
+//For each action button memorise selected numbers before the action button was pressed
+//action +, -, /, or *, store the current value 
+//in the currentResult,  and  clean up the display 
+//field for entering the next number 
+
+Object src = e.getSource();//every button pressed will the value of the variable "src"
+
+		
+if (src == parent.buttonPlus){ //if the user has pressed the action button plus
+	selectedAction = '+'; //the action performed signifies which calculation the current result will be used with the updated displayValue later on
+	currentResult=displayValue;//this stores the numbers that were selected before the plus was pressed,
+							//displayValue then goes and collects a second set of numbers to calculate with the value store in currentResult
+	parent.displayField.setText("" );//clears the text field so the user can add the next characters for the operation
+	parent.buttonPoint.setEnabled(true);//once the bullet point has been disabled after entering it once, 
+										//it needs to be re-enabled for the next number being added, in case it's a decimal
+	togglePoint = true;//need to allow more numbers to be entered again - in case equals has been pressed
+	
+} else if (src == parent.buttonMinus){ 
+	selectedAction = '-'; 
+	currentResult=displayValue; 
+	parent.displayField.setText("");
+	parent.buttonPoint.setEnabled(true);
+	togglePoint = true; 
+	
+}else if (src == parent.buttonDivide){ 
+	selectedAction = '/'; 
+	currentResult=displayValue; 
+	parent.displayField.setText("");
+	parent.buttonPoint.setEnabled(true);
+	togglePoint = true;
+	
+} else if (src == parent.buttonMultiply){ 
+	selectedAction = '*'; 
+	currentResult=displayValue; 
+	parent.displayField.setText("" ); 
+	parent.buttonPoint.setEnabled(true);
+	togglePoint = true;
+
+} else if (src==parent.buttonCE){
+	currentResult=0;
+	parent.displayField.setText("" ); 
+	parent.buttonPoint.setEnabled(true);
+	togglePoint = true;
+
+}else if (src==parent.buttonC){
+	parent.displayField.setText("" );
+	parent.buttonPoint.setEnabled(true);
+	togglePoint = true;
+
+}else if (src==parent.buttonPercentage){
+	selectedAction = '%'; 
+	currentResult=displayValue; 
+	parent.displayField.setText("" );
+	parent.buttonPoint.setEnabled(true);
+	togglePoint=true;
+}else if (src==parent.buttonSQRT){
+	selectedAction = 's'; 
+	currentResult=displayValue; 
+	parent.displayField.setText("" );
+	parent.buttonPoint.setEnabled(true);
+	togglePoint=true;
+
+} else if (src == parent.buttonEqual){ 
+	parent.buttonPoint.setEnabled(false);
+
+	//Perform the calculations based on selectedAction 
+	//update the value of the variable currentResult 
+	//and display the result to an empty string and display it 
+	
+	if (selectedAction=='+'){ 
+		currentResult +=displayValue;// currentResult = currentResult + displayValue
+		parent.displayField.setText(""+currentResult );//Convert the result to String by concatenating 
+		parent.buttonPoint.setEnabled(true);
+		togglePoint = false;
+
+	}else if (selectedAction=='-'){ //the button press before defined what character selectedAction would be
+		currentResult -=displayValue;//based on the button pressed, this line will calculate the problem given 
+									//by the user, in this case it is minus
+		parent.displayField.setText(""+currentResult); 
+		parent.buttonPoint.setEnabled(true);
+		togglePoint = false;}//this changes to false as a result will be displayed, 
+							//and the user should not be able to add numbers onto the result unless they are adding another calculation
+	
+	else if (selectedAction=='/'){
+		currentResult /=displayValue;
+		parent.displayField.setText(""+currentResult); 
+		parent.buttonPoint.setEnabled(true);
+		togglePoint = false;}
+	
+	else if (selectedAction=='*'){
+		currentResult*=displayValue; 
+		parent.displayField.setText(""+currentResult);
+		parent.buttonPoint.setEnabled(true);
+		togglePoint = false;}
+	
+	else if (selectedAction=='%'){
+		currentResult*=displayValue/100;
+		parent.displayField.setText(""+currentResult);
+		parent.buttonPoint.setEnabled(true);
+		togglePoint = false;}
+	
+	else if (selectedAction=='s'){
+		currentResult=java.lang.Math.sqrt(displayValue);
+		parent.displayField.setText(""+currentResult);
+		parent.buttonPoint.setEnabled(true);
+		togglePoint = false;}
+	} else{//after all the "else if"s are checked, perform the code below
+			//if statements for the numbers entered into the calculator
+		if (togglePoint == false){ //"toggle point" represents if the user is entering a number onto a result being displayed or not, if they are - 
+								//-then the result clears and the number entered will appear on it's own to start a new calculation
+			currentResult=0;//resets the data stored from before
+			parent.displayField.setText(clickedButtonLabel);//only inputs the latest number entered in the text field, 
+														//user can't add onto the last result unless they type another equation symbol
+		}
+		//	For all numeric buttons entered, append the button's 
+		//	label to the text field 
+		else if (togglePoint == true){
+			parent.displayField.setText(dispFieldText + clickedButtonLabel);//dispField = numbers already entered, clickedButtonLabel = the latest entered number
+											//adds the entered number into the text field with the other numbers
+
+		}
+		
+		}
+		}}
+//
+//
+//import java.awt.event.ActionListener; 
+//import java.awt.event.ActionEvent; 
+//import javax.swing.JButton;
+//
+//public class CalculatorEngine implements ActionListener  {
+//Calculator parent; //a reference to Calculator window 
+//char selectedAction = ' '; // +, -, /, or *
+//
+//double currentResult=0;
+//
+////	Constructor  stores the reference to the Calculator 
+////	window in the member variable parent 
+//CalculatorEngine(Calculator parent){ 
+//
+//this.parent = parent;
+//
+//}
+//
+//public void actionPerformed(ActionEvent  e){
+//
+//// Get the source of this action
+//
+//JButton clickedButton = (JButton) e.getSource(); 
+//String dispFieldText = parent.displayField.getText();
+//double displayValue=0;
+//
+////Get the number from the text field // if it’s not empty
+//
+//if (!"".equals(dispFieldText)){
+//	displayValue = Double.parseDouble(dispFieldText);
+//
+//
+//}
+//Object src = e.getSource();
+//
+////For each action button memorise  selected 
+////action +, -, /, or *, store the current value 
+////in the currentResult,  and  clean up the display 
+////field for entering the next number 
+//
+//if (src == parent.buttonPlus){ 
+//	selectedAction = '+'; 
+//    currentResult=displayValue; 
+//    parent.displayField.setText("");
+//    System.out.println("Test" +displayValue);
+//
+//} else if (src == parent.buttonMinus){ 
+//	selectedAction = '-'; 
+//	currentResult=displayValue;
+//	parent.displayField.setText("");
+//	
+//} else if (src == parent.buttonDivide){
+//	selectedAction = '/'; 
+//currentResult = displayValue;
+//parent.displayField.setText("");
+//
+//} else if (src == parent.buttonMultiply){ 
+//selectedAction = '*'; 
+//currentResult=displayValue;
+//parent.displayField.setText(""); 
+//
+//}else if (src ==parent.buttonDot){
+//	selectedAction = '.';
+//currentResult=displayValue; 
+//parent.displayField.setText("");
+//}else if (src == parent.buttonPercentage){
+//	selectedAction = '%';
+//currentResult=displayValue;
+//parent.displayField.setText("");
+//} else if (src ==parent.buttonSQRT){
+//	currentResult =displayValue;
+//	currentResult = Math.sqrt(currentResult);
+//	parent.displayField.setText(""+currentResult);
+//	// this button functions by revealing any number's square root that is entered into the calculator
+//}else if (src == parent.buttonC){
+//	currentResult = 0;
+//	displayValue = 0;
+//	parent.displayField.setText("");
+//	//this button deletes everything that has and was entered on the calculator
+//}else if (src==parent.buttonBackspace){
+//	String currentValue = parent.displayField.getText();
+//	String newValue = currentValue.substring(0, currentValue.length()-1);
+//// this the backspace button, it deletes the last value on the calculator by examining the length of the values
+//	//and then removing the last value and returning the remaining values.
+//	parent.displayField.setText(newValue);
+//} if (src==parent.buttonPlusMinus){
+//	currentResult = displayValue;
+//	if(currentResult > 0){
+//		currentResult = 0 - currentResult;
+//		parent.displayField.setText(""+currentResult);
+//	}else if(currentResult < 0){
+//		currentResult = 0 + currentResult;
+//		parent.displayField.setText(""+currentResult);
+//		// this button add any value that is less than zero and add numbers that are greater than the value zero
+//	}
+//
+//}else if(src == parent.buttonCE){
+//	currentResult = 0;
+//	displayValue =0;
+//	parent.displayField.setText(""+currentResult);
+//	// this button deletes the last entered value from the calculator
+//
+//} else if (src == parent.buttonEqual){ 	
+//
+////Perform the calculations based on selectedAction 
+////update the value of the variable currentResult 
+////and display the result 
+//
+//if (selectedAction=='+'){ 
+//	currentResult +=displayValue;
+//	parent.displayField.setText(""+currentResult);
+//
+////Convert the result to String by concatenating 
+////to an empty string and display it 
+//
+//}else if (selectedAction=='-'){ 
+//	currentResult -=displayValue;
+//	parent.displayField.setText(""+currentResult); 
+//	}
+//else if (selectedAction=='/'){
+//currentResult /=displayValue;
+//parent.displayField.setText(""+currentResult); 
+//}
+// else if (selectedAction=='%'){
+//	currentResult = (displayValue * currentResult)/100;
+//	parent.displayField.setText(""+currentResult);
+//	// this button ensure that percentage is returned by dividing the entered number by 100 and returning the outcome as an answer
+//}
+//else if (selectedAction=='*'){
+//currentResult*=displayValue; 
+//parent.displayField.setText(""+currentResult);
+//
+//} 
+//
+//} else {
+//
+////	For all numeric buttons append the button's 
+////	label to the text field 
+//
+//String clickedButtonLabel = clickedButton.getText(); 
+//parent.displayField.setText(dispFieldText + clickedButtonLabel);
+//}
+////try {
+//	
+//	//displayValue=Double.parseDouble(dispFieldText);
+//
+//	//file.read (); }catch(Exception e){
+//
+//	//printStackTrace();
+//
+//	//}finally{(!"".equals(dispFieldText))
+//
+////		the code that must always be executed 
+//
+////		goes here, for example file.close(); 
+//
+//	}
+//
+//}

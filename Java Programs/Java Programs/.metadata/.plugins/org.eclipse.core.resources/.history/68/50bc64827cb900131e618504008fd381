@@ -1,0 +1,15 @@
+
+public class Algorithum_V1 {
+
+	int a;
+	int b;
+	int c;
+	int d;
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

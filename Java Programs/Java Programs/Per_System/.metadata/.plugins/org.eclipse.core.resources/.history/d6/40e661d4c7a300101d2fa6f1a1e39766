@@ -1,0 +1,166 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+
+
+public class per_check implements ActionListener, Constraint{
+static int temp = 5;
+String Grade;
+JPanel Background;
+JPanel Buttonpanel;
+JButton option1;
+JButton option2;
+JButton option3;
+JButton option4;
+JButton option5;
+Container  appletContent;
+JTextArea txtinfo;
+
+//Dimension preferredSize = new Dimension(TABLE_WIDTH,TABLE_HEIGHT);
+
+//public Dimension getPreferredSize() {
+//    return preferredSize;
+//}
+
+	public static void main(String[] args) {
+		int month = 3;
+        String setting = null;
+        String feetString;
+        int feets;
+        
+        per_check TTT = new per_check();
+
+        JFrame window = new JFrame("Sample Applet and Application");
+           TTT.appletContent = window.getContentPane();
+           TTT.init();
+      // window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       window.setPreferredSize((new Dimension(200,200)));
+       window.setVisible(true);    // Make the window visible.
+        
+       
+       
+        // create a input stream reader connected to 
+        // System.in, and pass it to the buffered reader
+     	BufferedReader stdin = new BufferedReader
+     			 (new InputStreamReader(System.in));
+     		
+        // Keep diving until the user presses "Q"
+     	while (true) {
+     	  System.out.println("Please Select a Setting. For more infomation click H");
+     	  try {
+     		feetString = stdin.readLine();
+     		if (feetString.equals("H")){
+     		// Exit the program
+       		  System.out.println("Setting one = Light, and warm" +
+       		  					 "Setting two = Dark and warm" +
+       		  					 "Setting three = Light and Cold" +
+       		  					 "Setting four = Dark and cold" +
+       		  					 "Setting five = Tropical");
+     	 		}else {
+     	  // Convert the feetString into an integer and
+     	  // Dive according to the value of variable feet
+     		 feets = Integer.parseInt(feetString);
+     		month = feets;
+     		
+     	      }
+     	   } catch (IOException e) {
+     			e.printStackTrace();
+     	   }
+    
+      
+	
+        switch (month) {
+            case 1:  setting = "Setting One Activate\n Temprature is 45 degrees and it is very light";      break;
+            case 2:  setting = "Setting Two Activate";      break;
+            case 3:  setting = "Setting Three Activate";    break;
+            case 4:  setting = "Setting Four Activate";     break;
+            case 5:  setting = "Setting Five Activate";     break;
+        }
+         
+        System.out.println(setting);
+             
+        
+        	
+        }
+	}
+
+	public void init(){
+	    // Get the applet's content pane -
+	    // all window components go there
+	    
+
+	    //Set the applet's layout manager, font and background color
+	    appletContent.setLayout(new BorderLayout());
+	    appletContent.setBackground(Color.GREEN);
+	    appletContent.setPreferredSize((new Dimension(200,200)));
+	   
+	    
+	   
+	    
+	    // Create the button New Game and register it
+	    // with the action listener
+	    option1=new JButton("Option1");
+	    option1.addActionListener(this);
+	    option2=new JButton("Option2");
+	    option2.addActionListener(this);
+	    option3=new JButton("Option3");
+	    option3.addActionListener(this);
+	    
+
+	    JPanel Buttonpanel = new JPanel();
+	    	    Buttonpanel.setPreferredSize((new Dimension(200,200)));
+	    	    Buttonpanel.setLayout(new GridLayout(1,3));
+	    Buttonpanel.setBackground(Color.CYAN);
+
+	    Buttonpanel.add(option1);
+	    Buttonpanel.add(option2);
+	    Buttonpanel.add(option3);
+	 
+	    JPanel Mainarea = new JPanel();
+	    
+	    
+	    JPanel topPanel=new JPanel();
+	    topPanel.setLayout(new GridLayout(2,2));
+	    topPanel.setPreferredSize((new Dimension(200,200)));
+
+	    topPanel.add(Buttonpanel, "North");
+	    topPanel.add(Mainarea, "Center");
+	    
+	    
+	    
+	    
+	    appletContent.add(topPanel,"Center");
+
+	    JPanel centerPanel=new JPanel();
+	    // txtinfo = new 
+	  //  centerPanel.add(txtinfo);
+	    centerPanel.setLayout(new GridLayout(3,3));
+	    
+	    appletContent.add(centerPanel,"North");
+
+	    
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+		
+}
+	
+	
+

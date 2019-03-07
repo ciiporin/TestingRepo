@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Chapter2/src"/>
+	<classpathentry kind="src" path="Chapter3v2/src"/>
+	<classpathentry kind="src" path="Chapter5v2/src"/>
+	<classpathentry kind="src" path="Chapter6v2/src"/>
+	<classpathentry excluding="portfolioTask/" kind="src" path="Chapter7v2/src"/>
+	<classpathentry kind="src" path="Chapter7v2/src/portfolioTask"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Chapter7v2/bin"/>
+</classpath>

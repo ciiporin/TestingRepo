@@ -1,0 +1,59 @@
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JButton;
+
+
+public class Algorithum_V1 extends Frame implements ActionListener {
+    TextField time_style = new TextField(20);
+    TextField users = new TextField(20);
+    TextField irr_users = new TextField(20);
+    TextField device_red = new TextField(20);
+    TextField liveness_chr = new TextField(20);
+    TextField coercion_chr = new TextField(20);
+    
+    double time_style_var = 0;
+    double users_var = 0;
+    double irr_users_var = 0;
+    double device_red_var = 0;
+    double liveness_chr_var = 0;
+    double coercion_chr_var = 0;
+    
+    
+    Button set_Variables;
+
+    public static void main(String[] args) {
+    	    Algorithum_V1 myWindow = new Algorithum_V1("My first window");
+            myWindow.setSize(350,100);
+            myWindow.setVisible(true);
+    }
+
+    public Algorithum_V1(String title) {
+
+            super(title);
+            setLayout(new FlowLayout());
+            set_Variables = new Button("Set Variables");
+            add(set_Variables);
+            add(time_style);
+            add(users);
+            add(irr_users);
+            add(device_red);
+            add(liveness_chr);
+            add(coercion_chr);
+            
+            set_Variables.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+		String dispFieldText = time_style.getText();
+		time_style_var = Double.parseDouble(dispFieldText);
+
+    }
+
+   
+}

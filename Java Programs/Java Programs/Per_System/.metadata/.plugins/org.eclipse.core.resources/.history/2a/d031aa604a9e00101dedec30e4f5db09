@@ -1,0 +1,64 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class per_check {
+static int temp = 5;
+String Grade;
+
+	public static void main(String[] args) {
+		int month = 3;
+        String setting = null;
+        String feetString;
+        int feets;
+        
+        // create a input stream reader connected to 
+        // System.in, and pass it to the buffered reader
+     	BufferedReader stdin = new BufferedReader
+     			 (new InputStreamReader(System.in));
+     		
+        // Keep diving until the user presses "Q"
+     	while (true) {
+     	  System.out.println("Please Select a Setting. For more infomation click H");
+     	  try {
+     		feetString = stdin.readLine();
+     		if (feetString.equals("H")){
+     		// Exit the program
+       		  System.out.println("Setting one = Light, and warm" +
+       		  					 "Setting two = Dark and warm" +
+       		  					 "Setting three = Light and Cold" +
+       		  					 "Setting four = Dark and cold" +
+       		  					 "Setting five = Tropical");
+     	 		}else {
+     	  // Convert the feetString into an integer and
+     	  // Dive according to the value of variable feet
+     		 feets = Integer.parseInt(feetString);
+     		month = feets;
+     		
+     	      }
+     	   } catch (IOException e) {
+     			e.printStackTrace();
+     	   }
+    
+      
+	
+        switch (month) {
+            case 1:  setting = "Setting One Activate\n Temprature is 45 degrees and it is very light";      break;
+            case 2:  setting = "Setting Two Activate";      break;
+            case 3:  setting = "Setting Three Activate";    break;
+            case 4:  setting = "Setting Four Activate";     break;
+            case 5:  setting = "Setting Five Activate";     break;
+        }
+         
+        System.out.println(setting);
+             
+        
+        	
+        }
+	}
+		
+}
+	
+	
+

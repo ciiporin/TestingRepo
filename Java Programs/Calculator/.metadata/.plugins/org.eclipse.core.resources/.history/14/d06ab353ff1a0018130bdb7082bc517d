@@ -1,0 +1,171 @@
+import java.awt.event.ActionListener; 
+import java.awt.event.ActionEvent; 
+import javax.swing.JButton;
+
+public class CalculatorEngine implements ActionListener  {
+
+char selectedAction = ' '; // +, -, /, or *
+double currentResult=0;
+
+//	Constructor  stores the reference to the Calculator 
+//	window in the member variable parent 
+Calculator parent; //a reference to Calculator window 
+CalculatorEngine(Calculator parent){ 
+
+this.parent = parent;
+
+}
+
+public void actionPerformed(ActionEvent e) {
+	
+	//getting which button was clicked by the user
+	JButton clickedButton = (JButton)e.getSource();
+	//creating string variaable named dispFieldText to get the text held in the calculator's screen
+	String dispFieldText = parent.displayField.getText();
+	//creating double variable named displayValue
+	double displayValue = 0;
+	
+	//if statement which checks if the display field has any values in it
+	if (!"".equals(dispFieldText)){
+		//changing the display text from string to double and held in displayValue variable
+		displayValue=Double.parseDouble(dispFieldText);
+
+	}
+
+	//creating new object to get the source of the interaction
+	Object src = e.getSource();
+
+//For each action button memorise  selected 
+//action +, -, /, or *, store the current value 
+//in the currentResult,  and  clean up the display 
+//field for entering the next number 
+
+	if(src == parent.buttonPlus){
+		selectedAction = '+';
+		currentResult = displayValue;
+		parent.displayField.setText("");
+	}
+	//Minus Button Event Listener
+	else if(src == parent.buttonMinus){
+		selectedAction = '-';
+		currentResult = displayValue;
+		parent.displayField.setText("");
+	}
+	//Divide Button Event Listener
+	else if(src == parent.buttonDivide){
+		selectedAction = '/';
+		currentResult = displayValue;
+		parent.displayField.setText("");
+	}
+	//Multiply Button Event Listener
+	else if(src == parent.buttonMultiply){
+		selectedAction = '*';
+		currentResult = displayValue;
+		parent.displayField.setText("");
+	}
+	//Square root Button Event Listener
+	else if(src == parent.buttonSQRT){
+		currentResult = Math.sqrt(displayValue);
+		parent.displayField.setText("" + currentResult);
+	}
+//	//Powers Button Event Listener
+//	else if(src == parent.buttonPowers){
+//		selectedAction = '^';
+//		currentResult = displayValue;
+//		parent.displayField.setText("");
+//	}
+	//Percentage Button Event Listener
+	else if(src == parent.buttonPercentage){
+		selectedAction = '%';
+		currentResult = displayValue;
+		parent.displayField.setText("");
+//	}
+//	//Changing between positive and negative Button Event Listener
+//	else if(src == parent.buttonNegatives){
+//		currentResult = displayValue/-1;
+//		parent.displayField.setText("" + currentResult);
+	}
+	//backspace Button Event Listener
+	else if(src == parent.buttonBackspace){
+		
+		//https://www.youtube.com/watch?v=5fdqRQc_V9A&t=433s - reference for how to use string builder
+		//String builder used for changing string to characters, to remove last value
+		//checks that the length of the string in display field is greater than 1
+		if(parent.displayField.getText().length() > 0){
+			//creates new instance of StringBuilder
+			StringBuilder textString = new StringBuilder(parent.displayField.getText());
+			//deletes the last character of the string
+			textString.deleteCharAt(parent.displayField.getText().length()-1);
+			//assignes the altered string back to the display field
+			dispFieldText = textString.toString();
+			//sets the text of the display field to the new string with a removed character
+			parent.displayField.setText(dispFieldText);
+		}
+		
+	
+	//cancel everything Button Event Listener
+//	else if(src == parent.buttonCancelAll){
+//		//resets all variables
+//		currentResult = 0;
+//		displayValue = 0;
+//		parent.displayField.setText("");
+//	}
+//	//cancel current line Button Event Listener
+//	else if(src == parent.buttonCancel){
+//		//sets the displayed text to nothing
+//		parent.displayField.setText("");
+	} else if (src == parent.buttonEqual){ 	
+
+//Perform the calculations based on selectedAction 
+//update the value of the variable currentResult 
+//and display the result 
+
+if (selectedAction=='+'){ 
+	currentResult +=displayValue;
+	parent.displayField.setText(""+currentResult);
+
+//Convert the result to String by concatenating 
+//to an empty string and display it 
+
+}else if (selectedAction=='-'){ 
+	currentResult -=displayValue;
+	parent.displayField.setText(""+currentResult); 
+	}
+else if (selectedAction=='/'){
+currentResult /=displayValue;
+parent.displayField.setText(""+currentResult); 
+}
+ else if (selectedAction=='%'){
+	currentResult = (displayValue * currentResult)/100;
+	parent.displayField.setText(""+currentResult);
+	// this button ensure that percentage is returned by dividing the entered number by 100 and returning the outcome as an answer
+}
+else if (selectedAction=='*'){
+currentResult*=displayValue; 
+parent.displayField.setText(""+currentResult);
+
+} 
+
+}
+//else statement which runs if no if statement is met
+else{
+	String clickedButtonLabel = clickedButton.getText();
+	parent.displayField.setText(dispFieldText + clickedButtonLabel);
+}
+}
+
+}
+
+//try {
+	
+	//displayValue=Double.parseDouble(dispFieldText);
+
+	//file.read (); }catch(Exception e){
+
+	//printStackTrace();
+
+	//}finally{(!"".equals(dispFieldText))
+
+//		the code that must always be executed 
+
+//		goes here, for example file.close(); 

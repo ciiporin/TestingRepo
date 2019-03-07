@@ -1,0 +1,16 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,org.eclipse.jst.ws.axis2.consumption.ui,1.0.102.v200807232000,org.eclipse.jst.ws.axis2.consumption.ui,1299505105906
+stopped,bundle,org.eclipse.jst.ws.axis.creation.ui,1.0.306.v200811200248,org.eclipse.jst.ws.axis.creation.ui,1299505105937
+stopped,bundle,org.eclipse.jst.ws.axis.consumption.ui,1.0.305.v200809301934,org.eclipse.jst.ws.axis.consumption.ui,1299505105968
+stopped,bundle,org.eclipse.jst.ws.axis2.creation.core,1.0.103.v200807162242,org.eclipse.jst.ws.axis2.creation.core,1299505105984
+stopped,bundle,org.eclipse.jst.ws.axis2.creation.core,1.0.105.v200901220134,org.eclipse.jst.ws.axis2.creation.core,1299505106000
+stopped,bundle,org.eclipse.jst.ws.axis2.consumption.core,1.0.104.v200810151442,org.eclipse.jst.ws.axis2.consumption.core,1299505106015
+stopped,bundle,org.eclipse.jst.ws.creation.ui,1.0.308.v200901212148,org.eclipse.jst.ws.creation.ui,1299505106015
+stopped,bundle,org.eclipse.jst.ws.consumption.ui,1.1.4.v200901212148,org.eclipse.jst.ws.consumption.ui,1299505106031
+stopped,bundle,org.eclipse.jst.j2ee.webservice.ui,1.1.201.v200811062130,org.eclipse.jst.j2ee.webservice.ui,1299505106031
+stopped,bundle,org.eclipse.jst.ejb.ui,1.1.203.v200810010400,org.eclipse.jst.ejb.ui,1299505106031
+stopped,bundle,org.eclipse.jst.servlet.ui,1.1.203.v200810222000,org.eclipse.jst.servlet.ui,1299505106046
+stopped,bundle,org.eclipse.jst.jee.ui,1.0.104.v200902040818,org.eclipse.jst.jee.ui,1299505106046
+stopped,bundle,org.eclipse.jst.j2ee.navigator.ui,1.1.203.v200901290400,org.eclipse.jst.j2ee.navigator.ui,1299505106078
+stopped,bundle,org.eclipse.jst.j2ee.jca.ui,1.1.200.v200805140020,org.eclipse.jst.j2ee.jca.ui,1299505106078
+stopped,bundle,org.eclipse.datatools.enablement.sybase.asa.ui,1.0.1.v200805310538,org.eclipse.datatools.enablement.sybase.asa.ui,1299505106093

@@ -1,0 +1,133 @@
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DragSourceDragEvent;
+import java.awt.dnd.DragSourceDropEvent;
+import java.awt.dnd.DragSourceEvent;
+import java.awt.dnd.DragSourceListener;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.TransferHandler;
+
+/**
+ * Our custom JButton class that is Draggable.
+ * This JButton is Transferable (so it can be Dragged),
+ * And listens for its own drags
+ * */
+public class DnD extends JButton implements Transferable,
+DragSourceListener, DragGestureListener{
+
+    //marks this JButton as the source of the Drag
+    private DragSource source;
+
+    private TransferHandler t;
+
+    public DnD(){
+        this("");
+    }
+
+    public DnD(String message){
+        super(message);
+
+        //The TransferHandler returns a new DnD
+        //to be transferred in the Drag
+        t = new TransferHandler(){
+
+              public Transferable createTransferable(JComponent c){
+                    return new DnD(getText());
+              }
+        };
+        setTransferHandler(t);
+
+        //The Drag will copy the DnD rather than moving it
+        source = new DragSource();
+        source.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_COPY, this);
+    }
+
+     //The DataFlavor is a marker to let the DropTarget know how to
+     //handle the Transferable
+    public DataFlavor[] getTransferDataFlavors() {
+        return new DataFlavor[]{new DataFlavor(DnD.class, "JButton")};
+    }
+
+    public boolean isDataFlavorSupported1(DataFlavor flavor) {
+        return true;
+    }
+
+    public Object getTransferData1(DataFlavor flavor) {
+        return this;
+    }
+
+
+    public void dragEnter1(DragSourceDragEvent dsde) {}
+    public void dragOver1(DragSourceDragEvent dsde) {}
+    public void dropActionchanged(DragSourceDragEvent dsde) {}
+    public void dragExit1(DragSourceEvent dse) {}
+
+    //when the drag finishes, then repaint the DnD
+    //so it doesn't look like it has still been pressed down
+    public void dragDropEnd1(DragSourceDropEvent dsde) {
+        repaint();
+    }
+
+    //when a DragGesture is recognized, initiate the Drag
+    public void dragGestureRecognized1(DragGestureEvent dge) {
+         source.startDrag(dge, DragSource.DefaultMoveDrop, new DnD("Text"), this);        
+    }
+
+	@Override
+	public void dragGestureRecognized(DragGestureEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragDropEnd(DragSourceDropEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragEnter(DragSourceDragEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragExit(DragSourceEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragOver(DragSourceDragEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dropActionChanged(DragSourceDragEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object getTransferData(DataFlavor arg0)
+			throws UnsupportedFlavorException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isDataFlavorSupported(DataFlavor arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}//end outer class

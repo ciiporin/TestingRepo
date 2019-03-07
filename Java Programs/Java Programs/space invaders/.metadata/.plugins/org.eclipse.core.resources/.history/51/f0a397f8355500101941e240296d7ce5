@@ -1,0 +1,42 @@
+package bin;
+
+import Stage;
+
+    
+    
+//the bullet class takes on the attributes of the actor class
+//is marked for removal
+//has access to all its variables
+//interacts with the stage class
+//interacts with the spritecache class
+public class Bullet extends Actor {
+	//declaration of the speed at which the bullt will travel
+      protected static final int BULLET_SPEED=10;
+      //implements the use of the stage
+      public Bullet(Stage stage) {
+    	  //this method overrides the superclass 'stage' methods
+        super(stage);
+        //adds the bullet.gif element to the setSpriteNames array 
+        //in the actor class
+        setSpriteNames( new String[] {"Bullet.gif"});
+      }
+      // initialises the use of the method act
+      public void act() {
+//overides the act method's arguments 
+super.act();
+//subtracts and assigns the value of y from bullet_speed
+        y-=BULLET_SPEED;
+        //if y is less than 0 remove it
+        //if the bullet goes beyond the screen then remove it
+        if (y < 0)
+          remove();
+      }
+      
+      public void collision(Actor a) {
+	       if (a instanceof Monster )
+	         remove();
+	       stage.getPlayer().addScore(10);
+    }
+    }
+    
+ 

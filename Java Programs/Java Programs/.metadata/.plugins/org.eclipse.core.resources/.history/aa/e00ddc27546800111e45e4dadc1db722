@@ -1,0 +1,33 @@
+import lejos.nxt.ColorSensor;
+import lejos.robotics.Color;
+import lejos.nxt.Button;
+import lejos.nxt.LCD;
+import lejos.nxt.Motor;
+import lejos.nxt.SensorConstants;
+import lejos.nxt.SensorPort;
+import lejos.nxt.TouchSensor;
+
+public class Running {
+  public static void main(String[] args) throws Exception {
+	
+	  ColorSensor cs = new ColorSensor(SensorPort.S2);
+	 int store = cs.getColorID();
+	 System.out.println("testing"+store);
+	 if (store == 6){
+		 Motor.A.setSpeed(20);
+		 Motor.A.forward();
+		 Motor.C.setSpeed(20);
+		 Motor.C.forward();
+	 }else if ( store == 7) {
+		 Motor.A.setSpeed(40);
+		 Motor.A.forward();
+		 Motor.C.setSpeed(40);
+		 Motor.C.forward(); 
+	 }
+	 
+	 Button.waitForPress();
+	 
+  }
+
+	 
+}

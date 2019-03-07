@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+F:\Programs\DropboxPortableAHK\Dropbox\Java Programs\Student_Work\.metadata\.plugins\org.eclipse.jdt.core
+3930052657.index
+3959271942.index
+3975420634.index
+3900270184.index
+683747716.index

@@ -1,0 +1,120 @@
+import java.awt.event.ActionEvent;
+
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+
+public class ScientificCalculatorEngine implements ActionListener {
+	
+	ScientificCalculator parent; //A reference to the calculator
+	char selectedAction = ' '; //+, -, *, /, CE, C, sqrt, 1/x, %, backspace or +/-.
+	
+	double currentResult = 0;
+	
+	//Constructor stores the reference to the Calculator window in a member variable
+	ScientificCalculatorEngine(ScientificCalculator parent){
+		this.parent = parent;
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		
+		//Get the source of this action
+		  JButton clickedButton =  (JButton) e.getSource();
+		   String dispFieldText=parent.displayField.getText();
+		
+		double displayValue=0;
+		
+		//Get the number from the text field if it's not empty
+		if (!"".equals(dispFieldText)){
+			displayValue= Double.parseDouble(dispFieldText);
+		}
+		Object src = e.getSource();
+		
+		//For each action button memorize selected action +, -, *, or /,
+		//store the current value in the currentResult, and clean up the display field
+		//for entering the next number
+		if (src == parent.buttonAdd){
+			selectedAction = '+';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+			System.out.println("tedtinh");
+		} else if (src == parent.buttonMinus){
+			selectedAction = '-';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonDivide){
+			selectedAction = '/';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonTimes){
+			selectedAction = '*';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonSqrt){
+			selectedAction = 'q';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonPercent){
+			selectedAction = '%';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonOver){
+			selectedAction = 'x';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonInvert){
+			selectedAction = 'i';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonClear){
+			selectedAction = 'E';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonClearAll){
+			selectedAction = 'C';
+			currentResult=displayValue;
+			parent.displayField.setText("");
+		} else if (src == parent.buttonEqual){
+			//Perform the calculations based on selectedAction
+			//update the value of the variable currentResult
+			//and display the result
+			if (selectedAction=='+'){
+				currentResult +=displayValue;
+				//Convert the result to string by concatenating to 
+				//an empty string and display it
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='-'){
+				currentResult -=displayValue;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='/'){
+				currentResult /=displayValue;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='*'){
+				currentResult *=displayValue;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='q'){
+				currentResult = Math.sqrt(displayValue);
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='%'){
+				currentResult %=displayValue;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='x'){
+				currentResult= 1/displayValue;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='i'){
+				currentResult= (displayValue)*-1;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='E'){
+				currentResult= 0;
+				parent.displayField.setText(""+currentResult);
+			} else if (selectedAction=='C'){
+				//code to clear memory of calculator here.
+			} else{
+			//For all numeric buttons append the button's label to the text field
+			String clickedButtonLabel=clickedButton.getText();
+			parent.displayField.setText(dispFieldText + clickedButtonLabel);
+		}							
+	}
+	}
+}

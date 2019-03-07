@@ -1,0 +1,10 @@
+!SESSION 2012-07-20 11:32:20.766 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.7.0
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product -data C:\Peter\Dropbox -product org.eclipse.epp.package.jee.product
+
+!ENTRY com.android.ide.eclipse.ddms 4 0 2012-07-20 11:33:19.171
+!MESSAGE DDMS files not found: V:\DATA2\Apps\eclipse\platform-tools\adb.exe V:\DATA2\Apps\eclipse\tools\hprof-conv.exe V:\DATA2\Apps\eclipse\tools\traceview.bat 

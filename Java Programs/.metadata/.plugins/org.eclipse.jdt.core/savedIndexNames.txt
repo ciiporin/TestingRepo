@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+D:\Google Drive\Programming\Java Programs\.metadata\.plugins\org.eclipse.jdt.core
+2929330599.index

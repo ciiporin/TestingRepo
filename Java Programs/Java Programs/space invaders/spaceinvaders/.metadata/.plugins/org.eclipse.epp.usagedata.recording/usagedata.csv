@@ -1,0 +1,6 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,org.eclipse.datatools.sqltools.tablewizard,1.0.0.v200808140615,org.eclipse.datatools.sqltools.tablewizard,1299505303343
+stopped,bundle,org.eclipse.datatools.sqltools.ddlgen.ui,1.0.0.v200808140615,org.eclipse.datatools.sqltools.ddlgen.ui,1299505303359
+stopped,bundle,org.eclipse.datatools.sqltools.debugger.core,1.0.0.v200808140615,org.eclipse.datatools.sqltools.debugger.core,1299505303406
+stopped,bundle,org.eclipse.datatools.sqltools.routineeditor,1.0.0.v200807211830,org.eclipse.datatools.sqltools.routineeditor,1299505303406
+stopped,bundle,org.eclipse.jpt.db,1.1.2.v200809112059,org.eclipse.jpt.db,1299505303468

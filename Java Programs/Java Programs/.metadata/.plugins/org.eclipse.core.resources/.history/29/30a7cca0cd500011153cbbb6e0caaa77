@@ -1,0 +1,89 @@
+// Import GUI content
+import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CalculatorWorkingCW {
+	// Create JPanel buttons
+	JPanel windowContent;
+	JTextField displayField;
+	JButton button0;
+	JButton button1;
+	JButton button2;
+	JButton button3;
+	JButton button4;
+	JButton button5;
+	JButton button6;
+	JButton button7;
+	JButton button8;
+	JButton button9;
+	JButton buttonPoint;
+	JButton buttonEqual;
+	JButton buttonAdd;
+	JButton buttonSubtract;
+	JButton buttonDivide;
+	JButton buttonMultiply;
+	JPanel pl;
+	String DisplayText;
+
+	CalculatorWorkingCW() { // Method for calculator
+		windowContent = new JPanel();
+		BorderLayout bl = new BorderLayout(); // Call layout (Border)
+		windowContent.setLayout(bl);
+		displayField = new JTextField(30);
+		windowContent.add("North", displayField);
+		button0 = new JButton("0"); // Button 0
+		button1 = new JButton("1"); // Button 1
+		button2 = new JButton("2"); // Button 2
+		button3 = new JButton("3"); // Button 3
+		button4 = new JButton("4"); // Button 4
+		button5 = new JButton("5"); // Button 5
+		button6 = new JButton("6"); // Button 6
+		button7 = new JButton("7"); // Button 7
+		button8 = new JButton("8"); // Button 8
+		button9 = new JButton("9"); // Button 9
+		buttonSubtract = new JButton("-"); // Subtract Button
+		buttonAdd = new JButton("+"); // Add Button
+		buttonMultiply = new JButton("*"); // Multiply Button
+		buttonPoint = new JButton("."); // Decimal Button
+		buttonEqual = new JButton("="); // Equals Button
+		buttonDivide = new JButton("/"); // Divide Button
+		JPanel pl = new JPanel();
+		GridLayout gl = new GridLayout(4, 3); // Call layout (Grid)
+		pl.setLayout(gl);
+		pl.add(button1);
+		pl.add(button2);
+		pl.add(button3);
+		pl.add(buttonAdd);
+		pl.add(button4);
+		pl.add(button5);
+		pl.add(button6);
+		pl.add(buttonSubtract);
+		pl.add(button7);
+		pl.add(button8);
+		pl.add(button9);
+		pl.add(buttonMultiply);
+		pl.add(button0);
+		pl.add(buttonPoint);
+		pl.add(buttonEqual);
+		pl.add(buttonDivide);
+		
+		windowContent.add("Center", pl);
+		JFrame frame = new JFrame("Calculator"); // Title of frame
+		frame.setContentPane(windowContent); // ContentPane
+		frame.pack();
+		frame.setVisible(true); // Set Visibility
+
+		CalculatorEngine calcEngine = new CalculatorEngine();
+		button0.addActionListener(calcEngine);
+		button1.addActionListener(calcEngine);
+
+	}
+
+	public static void main(String[] args) {
+		CalculatorCW calc = new CalculatorCW(); // Run method CalculatorStyle
+
+	}
+}

@@ -1,0 +1,33 @@
+import lejos.nxt.ColorSensor;
+import lejos.robotics.Color;
+import lejos.nxt.LCD;
+import lejos.nxt.SensorConstants;
+import lejos.nxt.SensorPort;
+import lejos.nxt.TouchSensor;
+
+public class Running {
+  public static void main(String[] args) throws Exception {
+	  ColorSensor cs = new ColorSensor(SensorPort.S1);
+	
+	  ColorLightSensor cs = new ColorLightSensor(SensorPort.S1, SensorConstants.TYPE_LIGHT_ACTIVE);
+	  
+	  for(int i = 0; i < 100 && !done; i++)
+	  {
+	  cs.setFloodlight(lejos.robotics.Colors.Color.RED);
+	  sleep(1);
+	  LCD.clearDisplay();
+	  LCD.drawString("" + cs.getRedComponent(), 0,0);
+	  cs.setFloodlight(lejos.robotics.Colors.Color.GREEN);
+	  sleep(1);
+	  LCD.clearDisplay();
+	  LCD.drawString("" + cs.getGreenComponent(), 0,0);
+	  cs.setFloodlight(lejos.robotics.Colors.Color.BLUE);
+	  sleep(1);
+	  LCD.clearDisplay();
+	  LCD.drawString("" + cs.getBlueComponent(), 0,0);
+	  }
+	  
+  }
+
+	 
+}

@@ -1,0 +1,9 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,org.eclipse.datatools.enablement.sybase.asa,1.0.1.v200901150020,org.eclipse.datatools.enablement.sybase.asa,1308565889031
+stopped,bundle,org.eclipse.datatools.enablement.sybase.asa.models,1.0.0.v200805152355,org.eclipse.datatools.enablement.sybase.asa.models,1308565889031
+stopped,bundle,org.eclipse.datatools.enablement.sybase.ase.ui,1.0.1.v200806260315,org.eclipse.datatools.enablement.sybase.ase.ui,1308565889062
+stopped,bundle,org.eclipse.datatools.enablement.sybase.ase,1.0.1.v200901170012,org.eclipse.datatools.enablement.sybase.ase,1308565889078
+stopped,bundle,org.eclipse.datatools.enablement.sybase.ase.models,1.0.1.v200805152355,org.eclipse.datatools.enablement.sybase.ase.models,1308565889093
+stopped,bundle,org.eclipse.datatools.enablement.sybase.ui,1.0.0.v20081212,org.eclipse.datatools.enablement.sybase.ui,1308565889156
+stopped,bundle,org.eclipse.datatools.enablement.sybase,1.0.1.v200805310538,org.eclipse.datatools.enablement.sybase,1308565889156
+stopped,bundle,org.eclipse.datatools.sqltools.db.derby,1.0.0.v200805152355,org.eclipse.datatools.sqltools.db.derby,1308565889171
